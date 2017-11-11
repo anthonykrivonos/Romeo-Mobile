@@ -2,5 +2,7 @@
   "name": "Romeo",
   "app_id": "b0d67243",
   "type": "ionic-angular",
-  "integrations": {}
+  "integrations": {
+    "cordova": {}
+  }
 }
