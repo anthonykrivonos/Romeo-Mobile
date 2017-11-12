@@ -1,0 +1,45 @@
+<ion-header>
+      <ion-navbar>
+            <ion-title>{{challenge?.getName()}}</ion-title>
+            <ion-buttons end>
+                  <button (tap)="close()" ion-button>
+                        Close
+                  </button>
+            </ion-buttons>
+      </ion-navbar>
+</ion-header>
+
+<ion-content>
+      <ion-card>
+            <ion-fab top right>
+                  <button (tap)="playAudio(challenge?.getId(), challenge?.getAudio())" ion-fab><ion-icon name="md-play"></ion-icon></button>
+            </ion-fab>
+            <img src="{{challenge?.getThumbnailUrl()}}"/>
+            <ion-item (tap)="openChallenge()">
+                  <ion-thumbnail item-start>
+                        <img src="{{user?.getProfilePicture()}}">
+                  </ion-thumbnail>
+                  <h2>{{challenge?.getName()}}</h2>
+                  <p *ngIf="alphaDate">Created on {{alphaDate}} by {{user?.getName()}}</p>
+            </ion-item>
+            <button (tap)="newRendition()" color="primary" ion-item>
+                  <ion-icon name="md-microphone" item-start></ion-icon>
+                  Submit Rendition
+            </button>
+            <ion-list [hidden]="!submissions || submissions?.length == 0">
+                  <ion-card-header>
+                        Leaderboard
+                  </ion-card-header>
+                  <ion-item *ngFor="let submission of submissions">
+                        <h2 item-start>{{submission?.score}}</h2>
+                        <ion-thumbnail item-start>
+                              <img src="{{submission?.user?.profile_picture}}">
+                        </ion-thumbnail>
+                        <h2>{{submission?.user?.name}}</h2>
+                        <p *ngIf="submission?.date_created">{{timeOf(submission?.date_created)}}</p>
+                        <button (tap)="playAudio(challenge?.getId(), submission?.audio_url)" ion-button outline item-end>Play Audio</button>
+                  </ion-item>
+            </ion-list>
+      </ion-card>
+
+</ion-content>

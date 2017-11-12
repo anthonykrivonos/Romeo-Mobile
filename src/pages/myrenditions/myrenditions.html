@@ -1,0 +1,27 @@
+<ion-header>
+      <ion-navbar>
+            <ion-buttons start>
+                  <button (tap)="logOut()" ion-button>
+                        Log Out
+                  </button>
+            </ion-buttons>
+            <ion-title>{{user?.name?.split(' ')[0]}}'s Renditions</ion-title>
+      </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+      <div class="iconotron">
+            <ion-icon name="md-person"></ion-icon>
+      </div>
+      <romeo-placeholder *ngIf="challenges?.length == 0" [text]="'Oh no! Looks like you have yet to create a rendition.'"></romeo-placeholder>
+      <romeo-challenge *ngFor="let challenge of challenges"
+            [id]="challenge?.id"
+            [name]="challenge?.name"
+            [creator_id]="challenge?.creator_id"
+            [audio_url]="challenge?.audio"
+            [transcript]="challenge?.transcript"
+            [submissions]="challenge?.submissions"
+            [thumbnail_url]="challenge?.thumbnail_url"
+            [date_created]="challenge?.date_created"
+      ></romeo-challenge>
+</ion-content>

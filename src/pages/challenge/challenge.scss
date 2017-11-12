@@ -1,0 +1,16 @@
+page-challenge {
+      ion-content {
+            ion-card {
+                  youtube-search {
+                        ion-item {
+                              div.title {
+                                    border: solid 1px red !important;
+                                    white-space: nowrap !important;
+                                    overflow: hidden !important;
+                                    text-overflow: ellipsis !important;
+                              }
+                        }
+                  }
+            }
+      }
+}

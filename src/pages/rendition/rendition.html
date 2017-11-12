@@ -1,0 +1,36 @@
+<ion-header>
+      <ion-navbar>
+            <ion-title>New Rendition</ion-title>
+            <ion-buttons end>
+                  <button (tap)="close()" ion-button>
+                        Close
+                  </button>
+            </ion-buttons>
+      </ion-navbar>
+</ion-header>
+
+<ion-content>
+      <ion-card>
+            <ion-item>
+                  <ion-thumbnail item-start>
+                        <img src="{{user?.getProfilePicture()}}">
+                  </ion-thumbnail>
+                  <h2>{{user?.getName()}}</h2>
+                  <p>Press 'Record' to begin.</p>
+                  <button (tap)="record()" ion-button item-end outline>
+                        <ion-icon *ngIf="!audio_path" name="ios-radio-button-on" style="margin-right:1vw"></ion-icon>
+                        <ion-icon *ngIf="audio_path" name="ios-radio-button-off" style="margin-right:1vw"></ion-icon>
+                        <div *ngIf="!audio_path">Record</div>
+                        <div *ngIf="audio_path">Record Again</div>
+                  </button>
+            </ion-item>
+            <ion-item *ngIf="loading" text-center>
+                  <ion-spinner name="bubbles"></ion-spinner>
+            </ion-item>
+            <button *ngIf="audio_path" (tap)="submit()" color="primary" ion-item text-center>
+                  <ion-icon name="ios-send" item-start></ion-icon>
+                  Submit Under "{{challenge?.getName()}}"
+            </button>
+      </ion-card>
+
+</ion-content>

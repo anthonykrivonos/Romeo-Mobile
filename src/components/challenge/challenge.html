@@ -1,0 +1,7 @@
+<ion-item (tap)="openChallenge()" *ngIf="user && alphaDate">
+      <ion-thumbnail item-start>
+            <img src="{{thumbnail_url}}">
+      </ion-thumbnail>
+      <h2>{{name}}</h2>
+      <p>Created on {{alphaDate}} by {{user.getName()}}</p>
+</ion-item>

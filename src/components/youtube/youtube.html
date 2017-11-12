@@ -1,0 +1,12 @@
+<search-box
+      (loading)="loading = $event"
+      (results)="updateResults($event)"
+></search-box>
+<ion-scroll [@searchbarToggle]="results?.length > 0 ? 'false' : 'true'" scrollY="true">
+      <ion-list>
+            <search-result
+                  *ngFor="let result of results"
+                  [result]="result">
+            </search-result>
+      </ion-list>
+</ion-scroll>

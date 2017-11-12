@@ -1,0 +1,45 @@
+<ion-header>
+      <ion-navbar>
+            <ion-buttons start>
+                  <button (tap)="logOut()" ion-button>
+                        Log Out
+                  </button>
+            </ion-buttons>
+            <ion-title>
+                  Create Challenge
+            </ion-title>
+      </ion-navbar>
+</ion-header>
+
+<ion-content>
+      <div class="iconotron">
+            <ion-icon name="md-star"></ion-icon>
+      </div>
+      <ion-card>
+            <youtube-search></youtube-search>
+            <ion-item>
+                  <ion-label color="primary" stacked>Challenge Name</ion-label>
+                  <ion-input [(ngModel)]="name" placeholder="Your Challenge Name Here"></ion-input>
+            </ion-item>
+            <ion-item [hidden]="!transcriptReceived">
+                  <ion-textarea placeholder="Transcript"></ion-textarea>
+            </ion-item>
+            <ion-item>
+                  <span item-left>{{ date }}</span>
+                  <span *ngIf="!audioUrl" class="title" text-right>
+                        <ion-icon name="logo-youtube"></ion-icon>
+                        {{ title || "No Video Selected" }}
+                  </span>
+                  <button (tap)="playAudio()" *ngIf="audioUrl" class="title" ion-button text-right>
+                        <ion-icon name="logo-youtube"></ion-icon>
+                        Play {{ title || "No Video Selected" }}
+                  </button>
+            </ion-item>
+      </ion-card>
+      <ion-fab right bottom>
+            <button ion-fab *ngIf="title && name">
+                  <ion-icon *ngIf="!transcriptReceived" name="logo-youtube" (tap)="analyze()"></ion-icon>
+                  <ion-icon *ngIf="transcript?.length > 0 && transcriptReceived && name?.length > 0" name="md-checkmark" (tap)="submit()"></ion-icon>
+            </button>
+      </ion-fab>
+</ion-content>
